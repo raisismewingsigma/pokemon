@@ -1,7 +1,8 @@
 import discord
 from discord.ext import commands
 from config import token
-from logic import Pokemon
+from logic import Pokemon , magic , fighter
+import random
 
 # Setting up intents for the bot
 intents = discord.Intents.default()  # Getting the default settings
@@ -23,7 +24,13 @@ async def go(ctx):
     author = ctx.author.name  # Getting the name of the message's author
     # Check whether the user already has a Pokémon. If not, then...
     if author not in Pokemon.pokemons.keys():
-        pokemon = Pokemon(author)  # Creating a new Pokémon
+        chance = random.randint(1,3)
+        if chance == 1:
+            pokemon = Pokemon(author)
+        elif chance == 2:
+            pokemon = magic(author)
+        elif chance == 3:
+            pokemon = fighter(author)
         await ctx.send(await pokemon.info())  # Sending information about the Pokémon
         image_url = await pokemon.show_img()  # Getting the URL of the Pokémon image
         if image_url:
