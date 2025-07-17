@@ -55,5 +55,10 @@ async def attack(ctx):
             await ctx.send("kedua trainer harus punya pokemon yang akan digunakan!")
     else:
         await ctx.send("pilih lawan mu!,sebutkan nama usernya!")
+
+#async def info(ctx):
+    #author = ctx.author.name
+    #if author in Pokemon.pokemons:
+
 # Running the bot
 bot.run(token)
