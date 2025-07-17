@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from config import token
-from logic import Pokemon , magic , fighter
+from logic import Pokemon , magic , fighter 
 import random
 
 # Setting up intents for the bot
@@ -55,6 +55,16 @@ async def attack(ctx):
             await ctx.send("kedua trainer harus punya pokemon yang akan digunakan!")
     else:
         await ctx.send("pilih lawan mu!,sebutkan nama usernya!")
+
+@bot.command()
+async def feed(ctx):
+    author = ctx.author.name
+    if author in Pokemon.pokemons:
+        pokemon = Pokemon.pokemons[author]
+        response = pokemon.feed()
+        await ctx.send(response)
+    else:
+        await ctx.send("anda tidak punya pokemon!")
 
 #async def info(ctx):
     #author = ctx.author.name
